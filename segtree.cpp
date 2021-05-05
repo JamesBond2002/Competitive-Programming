@@ -1,14 +1,14 @@
 class SegTree
 {
-    int n, VAL, tree[2*N+2];
+    int n, VAL;
+    vt<int> tree;
 
     public:
     SegTree(int _n, int val)
     {
         n = _n;
         VAL = val;
-        for(int i = 0; i<=2*n+2; i++)
-            tree[i] = VAL;
+        tree.assign(2*n+2, VAL);
     }
     int todo(int a, int b) { return max(a, b); }
     void update(int i, int x)
