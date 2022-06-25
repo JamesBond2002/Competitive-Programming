@@ -1,26 +1,31 @@
-class BIT
-{
-    int n, VAL;
-    vt<int> bit;
+template <typename T>
+class BIT {
+    int n; T VAL;
+    vector<int> bit;
+
+    function<T(T, T)> todo;
 
     public:
-    BIT(int _n, int val)
+    BIT(int n, int VAL, function<T(T, T)> todo)
     {
-        n = _n;
-        VAL = val;
+        this->n = n;
+        this->VAL = n;
         bit.assign(2*n+2, VAL);
+        this->todo = todo;
     }
-    int todo(int a, int b) { return max(a, b); }
-    void update(int i, int x)
+    void update(int i, T x)
     {
         for(; i<=n; i += (i&-i))
             bit[i] = todo(bit[i], x);
     }
-    int get(int i)
+    T get(int i)
     {
-        int res = VAL;
+        T res = VAL;
         for(; i; i -= (i&-i))
             res = todo(res, bit[i]);
         return res;
     }
 };
+
+// Usage
+// BIT<int> bit(n, inf, [&](int x, int y) {return min(x, y);});
