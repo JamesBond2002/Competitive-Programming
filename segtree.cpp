@@ -26,3 +26,6 @@ class SegTree {
         return res;
     }
 };
+
+// Usage of SegTree class
+// SegTree<int> tmx(n+1, -inf, [&](int x, int y) -> int {return max(x, y);});
