@@ -13,7 +13,7 @@ class SegTree {
         tree.assign(2*n+2, VAL);
         this->todo = todo;
     }
-    void update(int i, int x) {
+    void update(int i, T x) {
         for(tree[i += n] = x; i > 1; i >>= 1)
             tree[i >> 1] = todo(tree[i], tree[i^1]);
     }
